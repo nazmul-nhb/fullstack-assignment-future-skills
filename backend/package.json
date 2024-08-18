@@ -1,0 +1,35 @@
+{
+	"name": "help-center-api",
+	"version": "1.0.0",
+	"description": "RESTful API that allows users to manage 'Help Center' cards. These cards represent different sections of a help center, such as 'Branches', 'Manage Your Account', Manage Billing', etc. The API allows users to create, retrieve these cards.",
+	"main": "index.js",
+  "type": "module",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nazmul-nhb/fullstack-assignment-future-skills.git"
+	},
+	"keywords": [
+		"api",
+		"express.js",
+		"node.js",
+		"help-center"
+	],
+	"author": "Nazmul Hassan",
+	"license": "ISC",
+   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+	"bugs": {
+		"url": "https://github.com/nazmul-nhb/fullstack-assignment-future-skills/issues"
+	},
+	"homepage": "https://github.com/nazmul-nhb/fullstack-assignment-future-skills#readme"
+}

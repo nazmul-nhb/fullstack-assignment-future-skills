@@ -1,4 +1,4 @@
-## React Assignment
+# React Assignment
 
 1. How can you implement shared functionality across a component tree?
 
