@@ -8,16 +8,19 @@ router.post('/', async (req, res) => {
     try {
         // Check if req.body is an array (for multiple cards)
         if (Array.isArray(req.body)) {
+            const users = req.body.map(user => ({ title: user.title, description: user.description }));
             // Insert multiple cards
-            const savedCards = await CardModel.insertMany(req.body);
+            const savedCards = await CardModel.insertMany(users);
             return res.status(201).send({
                 success: true,
                 insertedIds: savedCards.map((product) => product._id),
                 message: `${savedCards.length} Cards are Saved Successfully!`,
             });
         } else {
+            const { title, description } = req.body;
+            const card = { title, description };
             // Insert a single card
-            const newCard = new CardModel(req.body);
+            const newCard = new CardModel(card);
             const savedCard = await newCard.save();
             if (savedCard?._id) {
                 return res.status(201).send({
