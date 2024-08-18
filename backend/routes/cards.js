@@ -38,5 +38,54 @@ router.post('/', async (req, res) => {
     }
 });
 
+// get all cards as list
+router.get('/', async (req, res) => {
+    try {
+        const cards = await CardModel.find({});
+        res.status(200).send({
+            success: true,
+            message: `${cards.length} Cards Retrieved Successfully!`,
+            data: cards,
+        });
+    } catch (error) {
+        console.error("Fetching Cards Error: ", error?.message);
+        res.status(500).send({
+            success: false,
+            message: error?.message || "Internal Server Error!",
+        });
+    }
+});
+
+// get single card by title
+router.get('/:title', async (req, res) => {
+    try {
+        const { title } = req.params;
+
+        // Case-insensitive search using a regular expression
+        const card = await CardModel.findOne({
+            title: { $regex: new RegExp(`^${title}$`, 'i') }
+        });
+
+        if (card) {
+            res.status(200).send({
+                success: true,
+                message: `'${title}' Retrieved Successfully!`,
+                data: card,
+            });
+        } else {
+            res.status(404).send({
+                success: false,
+                message: `'${title}' Not Found!`,
+            });
+        }
+    } catch (error) {
+        console.error("Fetching Card Error: ", error?.message);
+        res.status(500).send({
+            success: false,
+            message: error?.message || "Internal Server Error!",
+        });
+    }
+});
+
 
 export default router;
