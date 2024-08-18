@@ -11,6 +11,7 @@ const cardSchema = new Schema({
     id: {
         type: String,
         unique: true,
+        default: generateID,
     },
     title: {
         type: String,
@@ -27,13 +28,13 @@ const cardSchema = new Schema({
     }
 });
 
-// Pre-save middleware to generate ID
-cardSchema.pre('save', function (next) {
-    if (this.isNew && !this.id) {
-        this.id = generateID();
-    }
-    next();
-});
+// // Pre-save middleware to generate ID
+// cardSchema.pre('save', function (next) {
+//     if (this.isNew && !this.id) {
+//         this.id = generateID();
+//     }
+//     next();
+// });
 
 // Error-handling middleware for posting single card
 cardSchema.post('save', function (error, doc, next) {
@@ -50,9 +51,13 @@ cardSchema.post('save', function (error, doc, next) {
 });
 
 // For cases where the 'save' middleware doesn't catch the error
-cardSchema.post('insertMany', function (error, doc, next) {
+cardSchema.post('insertMany', (error, doc, next) => {
     if (error.code === 11000) {
-        next(new Error('Duplicate! One or Some Title(s) Already Exist(s)!'));
+        if (error.keyValue && error.keyValue.title) {
+            next(new Error(`'${error.keyValue.title}' Already Exist(s)!`));
+        } else {
+            next(new Error('Duplicate! One or Some Title(s) Already Exist(s)!'));
+        }
     } else {
         next(error);
     }
