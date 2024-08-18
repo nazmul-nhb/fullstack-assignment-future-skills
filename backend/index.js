@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./db/helpCenterDB.js";
+import cardRoutes from "./routes/cards.js"
 
 dotenv.config();
 
@@ -24,11 +25,11 @@ const port = process.env.PORT || 3000;
 
         // test route
         app.get("/ping", async (req, res) => {
-            res.send("Pinged! Server is Running!");
+            res.send("Pinged! Help Center Server is Running!");
         });
 
         // routes
-
+        app.use("/cards", cardRoutes)
 
         // error handler for 404
         app.use((req, res, next) => {
