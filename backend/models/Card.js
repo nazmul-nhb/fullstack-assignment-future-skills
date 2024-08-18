@@ -10,7 +10,6 @@ const generateID = () => {
 const cardSchema = new Schema({
     id: {
         type: String,
-        default: generateID,
         unique: true,
     },
     title: {
@@ -22,6 +21,18 @@ const cardSchema = new Schema({
         type: String,
         required: [true, "Provide Card Description!"],
     },
+    link: {
+        type: String,
+        required: false,
+    }
+});
+
+// Pre-save middleware to generate ID
+cardSchema.pre('save', function (next) {
+    if (this.isNew && !this.id) {
+        this.id = generateID();
+    }
+    next();
 });
 
 // Error-handling middleware for posting single card

@@ -8,7 +8,11 @@ router.post('/', async (req, res) => {
     try {
         // Check if req.body is an array (for multiple cards)
         if (Array.isArray(req.body)) {
-            const users = req.body.map(user => ({ title: user.title, description: user.description }));
+            const users = req.body?.map(user => ({
+                title: user?.title,
+                description: user?.description,
+                link: user?.link
+            }));
             // Insert multiple cards
             const savedCards = await CardModel.insertMany(users);
             return res.status(201).send({
@@ -17,8 +21,8 @@ router.post('/', async (req, res) => {
                 message: `${savedCards.length} Cards are Saved Successfully!`,
             });
         } else {
-            const { title, description } = req.body;
-            const card = { title, description };
+            const { title, description, link } = req.body;
+            const card = { title, description, link };
             // Insert a single card
             const newCard = new CardModel(card);
             const savedCard = await newCard.save();
@@ -41,7 +45,9 @@ router.post('/', async (req, res) => {
 // get all cards as list
 router.get('/', async (req, res) => {
     try {
-        const cards = await CardModel.find({});
+        // exclude __v and _id fields
+        const projection = { __v: 0, _id: 0 };
+        const cards = await CardModel.find({}).select(projection);
         res.status(200).send({
             success: true,
             message: `${cards.length} Cards Retrieved Successfully!`,
@@ -60,11 +66,12 @@ router.get('/', async (req, res) => {
 router.get('/:title', async (req, res) => {
     try {
         const { title } = req.params;
+        const filter = { title: { $regex: new RegExp(`^${title}$`, 'i') } };
+        // exclude __v and _id fields
+        const projection = { __v: 0, _id: 0 };
 
         // Case-insensitive search using a regular expression
-        const card = await CardModel.findOne({
-            title: { $regex: new RegExp(`^${title}$`, 'i') }
-        });
+        const card = await CardModel.findOne(filter).select(projection);
 
         if (card) {
             res.status(200).send({
