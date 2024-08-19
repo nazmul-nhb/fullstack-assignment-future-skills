@@ -45,10 +45,31 @@ router.post('/', async (req, res) => {
 // get all cards as list
 router.get('/', async (req, res) => {
     try {
+        const { search } = req.query;
+
+        let filter = {};
+
+        // search by title
+        if (search && typeof search === "string") {
+            const searchText = search.trim();
+            if (searchText.length) {
+                filter.title = { $regex: searchText, $options: "i" };
+            }
+        }
+
         // exclude __v and _id fields
         const projection = { __v: 0, _id: 0 };
-        const cards = await CardModel.find({}).select(projection);
-        res.status(200).send({
+        const cards = await CardModel.find(filter).select(projection);
+        
+        if (!cards.length) {
+            return res.status(400).send({
+                success: false,
+                message: `No Cards Found!`,
+                data: cards,
+            });
+        }
+
+        return res.status(200).send({
             success: true,
             message: `${cards.length} Cards Retrieved Successfully!`,
             data: cards,
@@ -66,11 +87,11 @@ router.get('/', async (req, res) => {
 router.get('/:title', async (req, res) => {
     try {
         const { title } = req.params;
+        // Case-insensitive search using a regular expression
         const filter = { title: { $regex: new RegExp(`^${title}$`, 'i') } };
         // exclude __v and _id fields
         const projection = { __v: 0, _id: 0 };
 
-        // Case-insensitive search using a regular expression
         const card = await CardModel.findOne(filter).select(projection);
 
         if (card) {
