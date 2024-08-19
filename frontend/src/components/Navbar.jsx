@@ -10,7 +10,9 @@ const Navbar = () => {
 					size={26}
 					className="bg-white text-black rounded-lg"
 				/>
-				<span className="font-bold">Abstract</span>
+				<a href="#footer" className="font-bold">
+					Abstract
+				</a>
 				<span>|</span>
 				<a className="text-gray-200" href="#help-section">
 					Help Center
