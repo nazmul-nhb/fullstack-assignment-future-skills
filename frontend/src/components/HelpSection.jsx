@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const HelpSection = ({ cards }) => {
 	return (
-		<section>
+		<section id="help-section">
 			<div>
 				{cards?.map((card) => (
 					<Card key={card.id} card={card} />

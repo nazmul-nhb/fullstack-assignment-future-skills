@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'nazmulHelp': '#000000',
+        'nazmulButton': '#1a1a1a',
         'nazmulBG': '#dadbf0',
         'cardBG':'#f4f6f8'
       },

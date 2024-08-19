@@ -1,7 +1,7 @@
 
 const SearchSection = () => {
     return (
-        <section>
+        <section id="search-section">
             Hello from Search Section
         </section>
     );
