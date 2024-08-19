@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Navbar from "./components/Navbar";
@@ -6,27 +7,34 @@ import HelpSection from "./components/HelpSection";
 import Footer from "./components/Footer";
 
 const App = () => {
+	const [searchText, setSearchText] = useState("");
+
 	const { data: cards = [], isLoading } = useQuery({
-		queryKey: ["cards"],
+		queryKey: ["cards", searchText],
 		queryFn: async () => {
 			const { data } = await axios.get(
-				`https://future-skills-help-center-api.vercel.app/cards`
+				`https://future-skills-help-center-api.vercel.app/cards?search=${searchText}`
 			);
 			return data?.data;
 		},
 	});
 
-	if (isLoading)
-		return (
-			<div className="flex items-center justify-center">Loading...</div>
-		);
-
 	return (
 		<>
 			<Navbar />
 			<main>
-				<SearchSection />
-				<HelpSection cards={cards} />
+				<SearchSection
+					cards={cards}
+					setSearchText={setSearchText}
+					searchText={searchText}
+				/>
+				{isLoading ? (
+					"Loading..."
+				) : searchText && isLoading ? (
+					"Searching..."
+				) : (
+					<HelpSection cards={cards} />
+				)}
 			</main>
 			<Footer />
 		</>
