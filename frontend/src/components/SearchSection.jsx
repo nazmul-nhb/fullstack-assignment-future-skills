@@ -73,7 +73,7 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
                         )}
                         {/* button to search manually */}
 						<button
-							className="pr-4 hover:text-gray-400 transition-all duration-700"
+							className="pr-4 text-nazmulButton hover:text-gray-400 transition-all duration-700"
 							type="submit"
 						>
 							<FaArrowRight />

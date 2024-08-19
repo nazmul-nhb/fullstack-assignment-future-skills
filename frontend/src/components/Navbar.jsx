@@ -21,7 +21,7 @@ const Navbar = () => {
 			<div>
 				<button
 					onClick={() => toast.success("Feature is Coming Soon!")}
-					className="border-gray-500 text-gray-300 border-2 py-1 px-3 rounded-md bg-nazmulButton"
+					className="border-gray-500 text-gray-300 border-2 py-1 px-3 rounded-md bg-nazmulButton hover:bg-slate-800 transition-all duration-500"
 				>
 					Submit a request
 				</button>
