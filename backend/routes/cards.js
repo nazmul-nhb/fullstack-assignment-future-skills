@@ -60,14 +60,6 @@ router.get('/', async (req, res) => {
         // exclude __v and _id fields
         const projection = { __v: 0, _id: 0 };
         const cards = await CardModel.find(filter).select(projection);
-        
-        if (!cards.length) {
-            return res.status(400).send({
-                success: false,
-                message: `No Cards Found!`,
-                data: cards,
-            });
-        }
 
         return res.status(200).send({
             success: true,
