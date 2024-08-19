@@ -35,7 +35,7 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 	return (
 		<section
 			id="search-section"
-			className="px-4 sm:px-16 mx-auto max-w-[1920px] w-full bg-nazmulBG min-h-[40dvh]"
+			className="px-4 sm:px-16 mx-auto w-full bg-nazmulBG min-h-[40dvh]"
 		>
 			{/* Search Cards */}
 			<form
@@ -70,7 +70,8 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 							>
 								<MdClear />
 							</button>
-						)}
+                        )}
+                        {/* button to search manually */}
 						<button
 							className="pr-4 hover:text-gray-400 transition-all duration-700"
 							type="submit"

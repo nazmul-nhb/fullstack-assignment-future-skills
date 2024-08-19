@@ -22,19 +22,19 @@ const App = () => {
 	return (
 		<>
 			<Navbar />
-			<main>
+			<main className="max-w-[1920px] w-full mx-auto">
+				{/* Search Section */}
 				<SearchSection
 					cards={cards}
 					setSearchText={setSearchText}
 					searchText={searchText}
 				/>
-				{isLoading ? (
-					"Loading..."
-				) : searchText && isLoading ? (
-					"Searching..."
-				) : (
-					<HelpSection cards={cards} />
-				)}
+				{/* Section for Help Cards */}
+				<HelpSection
+					cards={cards}
+					searchText={searchText}
+					isLoading={isLoading}
+				/>
 			</main>
 			<Footer />
 		</>

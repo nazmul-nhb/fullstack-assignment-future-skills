@@ -9,7 +9,8 @@ export default {
       colors: {
         'nazmulButton': '#1a1a1a',
         'nazmulBG': '#dadbf0',
-        'cardBG':'#f4f6f8'
+        'cardBG': '#f4f6f8',
+        'cardTitle': '#2f3334',
       },
       fontFamily: {
         sourceSans: '"Source Sans 3", sans-serif;',
