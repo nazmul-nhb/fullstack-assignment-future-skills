@@ -48,7 +48,7 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 				>
 					How Can We Help?
 				</label>
-				<div className="flex gap-2 w-full items-center relative px-1 py-1.5 bg-white rounded-[4px] border border-nazmulButton shadow-md shadow-gray-400">
+				<div className="flex gap-2 w-full items-center relative px-1 py-1.5 bg-white rounded-[4px] border border-slate-400 shadow-md shadow-slate-400">
 					{/* Search Field */}
 					<input
 						ref={inputRef}

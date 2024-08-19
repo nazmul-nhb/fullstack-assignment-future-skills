@@ -7,7 +7,7 @@ const Card = ({ card }) => {
 	return (
 		<div
 			onClick={() => toast.success("Feature is Coming Soon!")}
-			className="space-y-2 bg-cardBG rounded-lg border border-slate-300 shadow-sm shadow-gray-200 hover:scale-105 hover:bg-slate-200 transition-all duration-500 cursor-pointer"
+			className="space-y-2 bg-cardBG rounded-lg border border-slate-300 shadow-md shadow-slate-300 hover:scale-105 hover:bg-slate-200 transition-all duration-500 cursor-pointer"
 		>
 			<h2 className="px-5 pt-3 text-xl font-bold text-cardTitle">
 				{title}
