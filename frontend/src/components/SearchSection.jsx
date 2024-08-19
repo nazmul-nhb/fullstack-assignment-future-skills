@@ -54,7 +54,7 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 						ref={inputRef}
 						defaultValue={searchText}
 						onChange={(e) => setSearchText(e.target.value)}
-						className="px-2 rounded-r-lg py-2 bg-white w-full focus:outline-0"
+						className="pl-2 pr-16 rounded-r-lg py-2 bg-white w-full focus:outline-0"
 						placeholder="Search"
 						type="text"
 						name="search"

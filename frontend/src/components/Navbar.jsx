@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
 	return (
-		<nav className="bg-black text-white flex justify-between px-4 sm:px-16 mx-auto max-w-[1920px] w-full py-4 rounded-t-2xl text-sm sm:text-xl font-semibold">
+		<nav className="bg-black text-white flex justify-between px-4 sm:px-16 mx-auto max-w-[1920px] w-full py-4 text-sm sm:text-xl font-semibold">
 			{/* site logo & title */}
 			<div className="flex gap-2 items-center">
 				<CgAbstract

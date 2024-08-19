@@ -26,7 +26,7 @@ const Footer = () => {
 	return (
 		<footer
 			id="footer"
-			className="bg-black text-white flex flex-col items-center lg:items-start lg:flex-row justify-between px-8 md:px-16 mx-auto max-w-[1920px] w-full py-12 rounded-b-2xl gap-6 sm:gap-12 xl:gap-20"
+			className="bg-black text-white flex flex-col items-center lg:items-start lg:flex-row justify-between px-8 md:px-16 mx-auto max-w-[1920px] w-full py-12 gap-6 sm:gap-12 xl:gap-20"
 		>
 			<div className="flex flex-col items-center sm:items-start sm:flex-row justify-between w-full gap-4 sm:gap-8 lg:gap-12">
 				{/* loop through footerOptions */}
