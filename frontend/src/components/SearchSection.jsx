@@ -54,7 +54,7 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 						ref={inputRef}
 						defaultValue={searchText}
 						onChange={(e) => setSearchText(e.target.value)}
-						className="pl-2 pr-16 rounded-r-lg py-2 bg-white w-full focus:outline-0"
+						className="pl-2 pr-14 py-2 bg-white w-full focus:outline-0 rounded-[4px] mx-1"
 						placeholder="Search"
 						type="text"
 						name="search"
@@ -70,8 +70,8 @@ const SearchSection = ({ searchText, setSearchText, cards }) => {
 							>
 								<MdClear />
 							</button>
-                        )}
-                        {/* button to search manually */}
+						)}
+						{/* button to search manually */}
 						<button
 							className="pr-4 text-nazmulButton hover:text-gray-400 transition-all duration-700"
 							type="submit"
